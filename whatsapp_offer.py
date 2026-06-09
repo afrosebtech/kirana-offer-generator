@@ -64,15 +64,28 @@ html, body, [class*="css"] { font-family: 'Baloo 2', sans-serif; }
 .stTextInput > div > div > input,
 .stTextArea > div > div > textarea,
 .stNumberInput > div > div > input {
-    background: rgba(255,255,255,0.06) !important;
-    border: 1.5px solid rgba(255,255,255,0.12) !important;
-    border-radius: 10px !important; color: white !important;
-    font-size: 1rem !important; font-family: 'Baloo 2', sans-serif !important;
+    background: rgba(255,255,255,0.12) !important;
+    border: 1.5px solid rgba(34,197,94,0.5) !important;
+    border-radius: 10px !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #22c55e !important;
+    font-size: 1rem !important;
+    font-family: 'Baloo 2', sans-serif !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+.stTextInput > div > div > input::placeholder,
+.stTextArea > div > div > textarea::placeholder {
+    color: rgba(255,255,255,0.35) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.35) !important;
 }
 .stTextInput > div > div > input:focus,
 .stTextArea > div > div > textarea:focus {
     border-color: #22c55e !important;
-    box-shadow: 0 0 0 3px rgba(34,197,94,0.15) !important;
+    background: rgba(255,255,255,0.14) !important;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.18) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 .stTextInput label, .stTextArea label, .stNumberInput label,
 .stSelectbox label, .stRadio label, .stMultiSelect label {
@@ -89,6 +102,13 @@ html, body, [class*="css"] { font-family: 'Baloo 2', sans-serif; }
     border-radius: 10px !important;
 }
 div[role="radiogroup"] label { color: #e2e8f0 !important; font-weight: 600 !important; }
+
+/* Force visible text in all inputs */
+input[type="text"], textarea {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #22c55e !important;
+}
 
 .stButton > button {
     width: 100% !important;
@@ -203,7 +223,7 @@ Return ONLY a valid JSON object (no markdown, no extra text):
 Only include keys for languages requested: {lang_list}"""
 
     response = client.chat.completions.create(
-        model="opencode/claude-sonnet-4-5",
+        model="claude-sonnet-4-5",
         max_tokens=1500,
         messages=[{"role": "user", "content": prompt}]
     )
